@@ -7,9 +7,8 @@ let image2 = document.querySelector('section img:nth-child(2)');
 let image3 = document.querySelector('section img:nth-child(3)');
 
 let votes = 0; //clicks
-
 let maxVotesAllowed = 25; //max votes
-
+let uniqueProductCount = 
 const state = { //
     allProductsArray: [],
 };
@@ -85,6 +84,46 @@ ul.append(li)
     }
     
 }
+const data = {
+    lables: productNames
+    datasets:[{
+        label: 'Votes',
+        data: productLikes
+        backgroundColor:[
+            'rgba(255,99,132,0.2)'
+        ],
+        borderColor:[
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    },
+    {
+    label: 'TimesShown',
+    data: productViews
+    backgroundColor: [
+        'rgb(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+        'rgb(255,159,64)'
+    ],
+    borderWidth: 1
+    }]
+};
+const config = {
+    type: 'bar'
+    data: data,
+    options: {
+        scales:{
+            y:{
+                beginAtzero: true
+            }
+        }
+    },
+};
+
+let canvasChart = document.getElementById('myChart');
+const myChart = new CharacterData(canvaschart, config);
+
 
 //executable code
 
