@@ -1,0 +1,68 @@
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightyellow;
+    color: darkgoldenrod;
+}
+
+main {
+    width: 1000px;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: 250px 4fr;
+    grid-template-rows: 6.5rem 10rem 20rem 40%;
+}
+
+#logo {
+    width: 100px;
+    z-index: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3
+}
+
+h1 {
+    line-height: .8;
+    margin: 3rem 0 1rem;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+section+div {
+    background-color: brown;
+    color: lightcoral;
+    padding: .5rem 1rem;
+    width: max-content;
+    height: max-content;
+    font-size: .8rem;
+    margin: 1rem;
+    border-radius: 0%;
+    row-gap: 1em;
+}
+
+section img {
+    width: 400px;
+    max-height: 20rem;
+    border: 5px solid;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+section img:hover {
+    border: 5px solid lightgray;
+    cursor: pointer
+}
+
+section+div:hover {
+    cursor: pointer;
+    border: 2px solid black;
+}
