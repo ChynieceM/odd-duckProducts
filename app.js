@@ -84,7 +84,7 @@ ul.append(li)
     }
     
 }
-const data = {
+/*const data = {
     lables: productNames
     datasets:[{
         label: 'Votes',
@@ -122,7 +122,7 @@ const config = {
 };
 
 let canvasChart = document.getElementById('myChart');
-const myChart = new CharacterData(canvaschart, config);
+const myChart = new CharacterData(canvaschart, config);*/
 
 
 //executable code
