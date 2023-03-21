@@ -8,7 +8,7 @@ let image3 = document.querySelector('section img:nth-child(3)');
 
 let votes = 0; //clicks
 let maxVotesAllowed = 25; //max votes
-let uniqueProductCount = 
+//let uniqueProductCount = 
 const state = { //
     allProductsArray: [],
 };
