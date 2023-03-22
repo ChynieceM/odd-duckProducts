@@ -8,9 +8,16 @@ let image3 = document.querySelector('section img:nth-child(3)');
 
 let votes = 0; //clicks
 let maxVotesAllowed = 25; //max votes
-//let uniqueProductCount = 
+
+
+let uniqueImageCount = 6 // To make sure I display every possible combination of 3 unique images, I need at least 6 so I can display 20 different combos w/out repeats. To meet the 25 max amount of clicks, each click shows a new combo of 3 images which means I can only show a max of 75 different combos. Since I can create 20 unique combos with 6 unique images, I should aim for 6.
+
+
+
+
 const state = { //
     allProductsArray: [],
+    indexArray: [],
 };
 
 //functional logic
@@ -28,15 +35,21 @@ function getRandomNumber() {
 
 function renderProducts() {
     //call getRandomNumber function
-    let product1 = getRandomNumber();
-    let product2 = getRandomNumber();
-    let product3 = getRandomNumber();
 
-    while (product1 == product2 || product2 == product3 || product3 == product1) {
-        product2 = getRandomNumber();
-        product3 = getRandomNumber();
-        product1 = getRandomNumber();
+    while (state.indexArray.length < uniqueImageCount) {
+        let randomNumber = getRandomNumber();
+        if (!state.indexArray.includes(randomNumber)) {
+            state.indexArray.push(randomNumber);
+        }
     }
+    console.log(state.indexArray);
+
+    let product1 = state.indexArray.shift();
+    let product2 = state.indexArray.shift();
+    let product3 = state.indexArray.shift();
+
+
+   
     image1.src = state.allProductsArray[product1].path;
     image2.src = state.allProductsArray[product2].path;
     image3.src = state.allProductsArray[product3].path;
@@ -48,7 +61,8 @@ function renderProducts() {
     state.allProductsArray[product1].timesImageViewed++;
     state.allProductsArray[product2].timesImageViewed++;
     state.allProductsArray[product3].timesImageViewed++;
-}
+    }
+
 
 function checkIfProductIsClicked(event) {
     if (event.target === productContainer) {
@@ -66,23 +80,61 @@ function checkIfProductIsClicked(event) {
 
     if (votes === maxVotesAllowed) {
         productContainer.removeEventListener('click', checkIfProductIsClicked);
-        resultButton.addEventListener('click', printResults);
-        
-        resultButton.className = 'clicks-allowed'
         productContainer.className = 'no-voting';
+        printChart();
     } else {
         renderProducts();
     }
 }
 
-function printResults(){
-    let ul = document.querySelector('ul');
-    for (let i = 0; i< state.allProductsArray.length; i++){
-let li = document.createElement('li')
-li.textContent = `${state.allProductsArray[i].name} was seen ${state.allProductsArray[i].timesImageViewed} times and had ${state.allProductsArray[i].votes} votes.`;
-ul.append(li)
+function printChart(){
+    let productNames = [];
+    let productVotes = [];
+    let productViews = [];
+    for(let i = 0; i < state.allProductsArray.length; i++){
+        productNames.push(state.allProductsArray[i].name);
+        productVotes.push(state.allProductsArray[i].votes);
+        productViews.push(state.allProductsArray[i].timesImageViewed);
     }
-    
+    const data = {
+        labels: productNames,
+        datasets: [{
+          label: 'Votes',
+          data: productVotes,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)'
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Times Shown',
+          data: productViews,
+          backgroundColor: [
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgb(255, 159, 64)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      const config = { type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+    };
+    let canvasChart = document.getElementById('myChart');
+    const myChart = new Chart(canvasChart, config);
+      
 }
 /*const data = {
     lables: productNames
@@ -125,6 +177,7 @@ let canvasChart = document.getElementById('myChart');
 const myChart = new CharacterData(canvaschart, config);*/
 
 
+
 //executable code
 
 let bag = new duckProduct('bag', 'img/bag.jpg');
@@ -132,7 +185,7 @@ let banana = new duckProduct('banana', 'img/banana.jpg');
 let bathroom = new duckProduct('bathroom', 'img/bathroom.jpg')
 let boots = new duckProduct('boots', 'img/boots.jpg');
 let breakfast = new duckProduct('breakfast', 'img/breakfast.jpg');
-let bubblegum = new duckProduct('bubblegum','img/bubblegum.jpg');
+let bubblegum = new duckProduct('bubblegum', 'img/bubblegum.jpg');
 let chair = new duckProduct('Chair', 'img/chair.jpg');
 let cthulhu = new duckProduct('cthulhu', 'img/cthulhu.jpg');
 let dogDuck = new duckProduct('dog-duck', 'img/dog-duck.jpg');
@@ -144,7 +197,7 @@ let shark = new duckProduct('shark', 'img/shark.jpg');
 let sweep = new duckProduct('sweep', 'img/sweep.png');
 let tauntaun = new duckProduct('tauntaun', 'img/tauntaun.jpg');
 
-state.allProductsArray.push(bag, banana, bathroom,boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep,scissors,shark, sweep,tauntaun);
+state.allProductsArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun);
 
 renderProducts();
 

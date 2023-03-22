@@ -1,40 +1,35 @@
-
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightyellow;
     color: darkgoldenrod;
+    display: block;
+    margin-left: 70px;
+    margin-right: 70px;
 }
 
 main {
     width: 1000px;
     margin: 3rem auto;
-    display: grid;
-    grid-template-columns: 250px 4fr;
-    grid-template-rows: 6.5rem 10rem 20rem 40%;
+}
+
+main > div:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
 }
 
 #logo {
     width: 100px;
-    z-index: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 3
 }
 
 h1 {
     line-height: .8;
     margin: 3rem 0 1rem;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 3;
 }
 
 section+div {
     background-color: brown;
-    color: lightcoral;
+    color: rgb(244, 236, 236);
     padding: .5rem 1rem;
     width: max-content;
     height: max-content;
@@ -48,6 +43,8 @@ section img {
     width: 400px;
     max-height: 20rem;
     border: 5px solid;
+   margin-right: 10px;
+
 }
 
 section {
@@ -64,5 +61,10 @@ section img:hover {
 
 section+div:hover {
     cursor: pointer;
-    border: 2px solid black;
+    border: 2px solid gray;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
 }
