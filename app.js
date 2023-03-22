@@ -14,7 +14,6 @@ let uniqueImageCount = 6 // To make sure I display every possible combination of
 
 
 
-
 const state = { //
     allProductsArray: [],
     indexArray: [],
