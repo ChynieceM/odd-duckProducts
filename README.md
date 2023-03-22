@@ -1,6 +1,6 @@
 # Light house score
 
-![Light House score](Screenshot(19).png)
+![Light House score](img/Screenshot%20(19).png)
 
 
 ## Unique Image Count explanation
