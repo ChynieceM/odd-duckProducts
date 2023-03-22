@@ -7,10 +7,13 @@ let image2 = document.querySelector('section img:nth-child(2)');
 let image3 = document.querySelector('section img:nth-child(3)');
 
 let votes = 0; //clicks
-
 let maxVotesAllowed = 25; //max votes
 
+
 let uniqueImageCount = 6 // To make sure I display every possible combination of 3 unique images, I need at least 6 so I can display 20 different combos w/out repeats. To meet the 25 max amount of clicks, each click shows a new combo of 3 images which means I can only show a max of 75 different combos. Since I can create 20 unique combos with 6 unique images, I should aim for 6.
+
+
+
 
 const state = { //
     allProductsArray: [],
@@ -133,6 +136,46 @@ function printChart(){
     const myChart = new Chart(canvasChart, config);
       
 }
+/*const data = {
+    lables: productNames
+    datasets:[{
+        label: 'Votes',
+        data: productLikes
+        backgroundColor:[
+            'rgba(255,99,132,0.2)'
+        ],
+        borderColor:[
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    },
+    {
+    label: 'TimesShown',
+    data: productViews
+    backgroundColor: [
+        'rgb(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+        'rgb(255,159,64)'
+    ],
+    borderWidth: 1
+    }]
+};
+const config = {
+    type: 'bar'
+    data: data,
+    options: {
+        scales:{
+            y:{
+                beginAtzero: true
+            }
+        }
+    },
+};
+
+let canvasChart = document.getElementById('myChart');
+const myChart = new CharacterData(canvaschart, config);*/
+
 
 
 //executable code
