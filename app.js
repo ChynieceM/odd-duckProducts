@@ -37,13 +37,13 @@ function renderProducts() {
 
     while (state.indexArray.length < uniqueImageCount) {
         let randomNumber = getRandomNumber();
-        if (!state.indexArray.includes(randomNumber)) {
+        if (!state.indexArray.includes(randomNumber)) { //if your boolean is true the ! flips it to false
             state.indexArray.push(randomNumber);
         }
     }
     console.log(state.indexArray);
 
-    let product1 = state.indexArray.shift();
+    let product1 = state.indexArray.shift(); //changes the length of the array
     let product2 = state.indexArray.shift();
     let product3 = state.indexArray.shift();
 
@@ -76,14 +76,16 @@ function checkIfProductIsClicked(event) {
             break;
         }
     }
-
     if (votes === maxVotesAllowed) {
-        productContainer.removeEventListener('click', checkIfProductIsClicked);
-        productContainer.className = 'no-voting';
-        printChart();
+      productContainer.removeEventListener('click', checkIfProductIsClicked);
+      productContainer.className = 'no-voting';
+      printChart();
     } else {
-        renderProducts();
+      renderProducts();
     }
+    
+    localStorage.setItem('state.allProductsArray', JSON.stringify(state.allProductsArray));
+  
 }
 
 function printChart(){
@@ -135,46 +137,6 @@ function printChart(){
     const myChart = new Chart(canvasChart, config);
       
 }
-/*const data = {
-    lables: productNames
-    datasets:[{
-        label: 'Votes',
-        data: productLikes
-        backgroundColor:[
-            'rgba(255,99,132,0.2)'
-        ],
-        borderColor:[
-            'rgb(255, 99, 132)'
-        ],
-        borderWidth: 1
-    },
-    {
-    label: 'TimesShown',
-    data: productViews
-    backgroundColor: [
-        'rgb(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-        'rgb(255,159,64)'
-    ],
-    borderWidth: 1
-    }]
-};
-const config = {
-    type: 'bar'
-    data: data,
-    options: {
-        scales:{
-            y:{
-                beginAtzero: true
-            }
-        }
-    },
-};
-
-let canvasChart = document.getElementById('myChart');
-const myChart = new CharacterData(canvaschart, config);*/
-
 
 
 //executable code
@@ -196,8 +158,19 @@ let shark = new duckProduct('shark', 'img/shark.jpg');
 let sweep = new duckProduct('sweep', 'img/sweep.png');
 let tauntaun = new duckProduct('tauntaun', 'img/tauntaun.jpg');
 
-state.allProductsArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun);
+if(localStorage['state.allProductsArray']){
+  state.allProductsArray = JSON.parse(localStorage.getItem('state.allProductsArray'))
+} else{
+  state.allProductsArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun);
+}
+
 
 renderProducts();
 
 productContainer.addEventListener('click', checkIfProductIsClicked);
+
+
+
+
+
+
