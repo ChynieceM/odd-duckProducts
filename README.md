@@ -1,3 +1,8 @@
+# Light house score
+
+![Light House score](Screenshot(19).png)
+
+
 ## Unique Image Count explanation
 
 1. If you want to display three unique images at once, and there are a total of n images, then the minimum number of unique images needed (u) is:
